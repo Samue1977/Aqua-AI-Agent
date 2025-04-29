@@ -1,22 +1,22 @@
-// Risposte predefinite per la versione demo
+// Default responses for the demo version
 const demoResponses = {
-    default: "Questa è una versione dimostrativa con funzionalità limitate. Per accedere a tutte le funzionalità di Aqua Advisor, acquista il libro 'Above Ground Pools & Outdoor Spas' e inserisci il codice di accesso.",
+    default: "This is a demo version with limited features. To access all features of Aqua Advisor, purchase the book 'Above Ground Pools & Outdoor Spas' and enter the access code.",
     
-    piscina: "Le piscine fuori terra sono un'ottima soluzione per chi desidera godere dei benefici di una piscina con un investimento contenuto. Esistono diversi tipi, come quelle con struttura in acciaio, in legno o in composito. Nella versione completa di Aqua Advisor potrai ricevere consigli personalizzati in base alle tue esigenze specifiche.",
+    pool: "Above-ground pools are a great solution for those who want to enjoy the benefits of a pool with a contained investment. There are different types, such as those with steel structures, wood, or composite. In the full version of Aqua Advisor, you can receive personalized advice based on your specific needs.",
     
-    manutenzione: "La manutenzione base di una piscina include il controllo regolare del pH e del cloro, la pulizia del filtro e la rimozione di detriti dalla superficie. Per consigli più dettagliati e personalizzati, sblocca la versione completa di Aqua Advisor.",
+    maintenance: "Basic pool maintenance includes regular checking of pH and chlorine levels, filter cleaning, and removing debris from the surface. For more detailed and personalized advice, unlock the full version of Aqua Advisor.",
     
-    filtrazione: "Un buon sistema di filtrazione è essenziale per mantenere l'acqua della piscina pulita e sicura. I tipi principali sono a sabbia, a cartuccia e a diatomee. Nella versione completa di Aqua Advisor potrai scoprire quale sistema è più adatto alle tue esigenze specifiche.",
+    filtration: "A good filtration system is essential to keep pool water clean and safe. The main types are sand, cartridge, and diatomaceous earth. In the full version of Aqua Advisor, you can find out which system is best suited to your specific needs.",
     
-    spa: "Le spa da esterno offrono relax e benefici terapeutici. Nella scelta, considera dimensioni, numero di posti, potenza dei getti e isolamento termico. Per una consulenza completa sulle spa, sblocca la versione integrale di Aqua Advisor.",
+    spa: "Outdoor spas offer relaxation and therapeutic benefits. When choosing, consider size, number of seats, jet power, and thermal insulation. For a complete consultation on spas, unlock the full version of Aqua Advisor.",
     
-    costo: "I costi di una piscina fuori terra variano considerevolmente in base a dimensioni, materiali e accessori. Una piscina base può partire da circa €1.500, mentre modelli premium possono superare i €15.000. Per un preventivo personalizzato, accedi alla versione completa di Aqua Advisor."
+    cost: "The costs of an above-ground pool vary considerably based on size, materials, and accessories. A basic pool can start from around €1,500, while premium models can exceed €15,000. For a personalized quote, access the full version of Aqua Advisor."
 };
 
-// Codice di accesso valido (in un'implementazione reale, questo sarebbe gestito in modo più sicuro)
-const validAccessCode = "AQUA2025";
+// Valid access code (in a real implementation, this would be handled more securely)
+const validAccessCode = "AQUA2025"; // Keep the demo code or suggest user defines one
 
-// Elementi DOM
+// DOM Elements
 document.addEventListener('DOMContentLoaded', function() {
     const chatMessages = document.getElementById('chatMessages');
     const userInput = document.getElementById('userInput');
@@ -25,25 +25,25 @@ document.addEventListener('DOMContentLoaded', function() {
     const unlockButton = document.getElementById('unlockButton');
     const unlockMessage = document.getElementById('unlockMessage');
     
-    // Gestione invio messaggi chat
+    // Handle sending chat messages
     function sendMessage() {
         const message = userInput.value.trim();
         if (message === '') return;
         
-        // Aggiungi messaggio utente
+        // Add user message
         addMessage(message, 'user');
         
-        // Genera risposta
+        // Generate response
         setTimeout(() => {
             const response = generateResponse(message);
             addMessage(response, 'bot');
         }, 500);
         
-        // Pulisci input
+        // Clear input
         userInput.value = '';
     }
     
-    // Aggiungi messaggio alla chat
+    // Add message to chat
     function addMessage(text, sender) {
         const messageDiv = document.createElement('div');
         messageDiv.classList.add('message', sender);
@@ -54,44 +54,44 @@ document.addEventListener('DOMContentLoaded', function() {
         messageDiv.appendChild(paragraph);
         chatMessages.appendChild(messageDiv);
         
-        // Auto-scroll alla fine della chat
+        // Auto-scroll to the end of the chat
         chatMessages.scrollTop = chatMessages.scrollHeight;
     }
     
-    // Genera risposta in base all'input
+    // Generate response based on input
     function generateResponse(input) {
         input = input.toLowerCase();
         
-        // Cerca parole chiave nell'input
-        if (input.includes('piscina') || input.includes('pool')) {
-            return demoResponses.piscina;
-        } else if (input.includes('manutenzione') || input.includes('pulire') || input.includes('pulizia')) {
-            return demoResponses.manutenzione;
-        } else if (input.includes('filtro') || input.includes('filtrazione')) {
-            return demoResponses.filtrazione;
-        } else if (input.includes('spa') || input.includes('idromassaggio') || input.includes('jacuzzi')) {
+        // Search for keywords in the input
+        if (input.includes('pool')) {
+            return demoResponses.pool;
+        } else if (input.includes('maintenance') || input.includes('clean')) {
+            return demoResponses.maintenance;
+        } else if (input.includes('filter') || input.includes('filtration')) {
+            return demoResponses.filtration;
+        } else if (input.includes('spa') || input.includes('hot tub') || input.includes('jacuzzi')) {
             return demoResponses.spa;
-        } else if (input.includes('costo') || input.includes('prezzo') || input.includes('quanto costa')) {
-            return demoResponses.costo;
+        } else if (input.includes('cost') || input.includes('price') || input.includes('how much')) {
+            return demoResponses.cost;
         } else {
             return demoResponses.default;
         }
     }
     
-    // Verifica codice di accesso
+    // Verify access code
     function checkAccessCode() {
         const code = accessCode.value.trim();
         
         if (code === validAccessCode) {
-            unlockMessage.textContent = "Codice valido! Accesso completo sbloccato.";
+            unlockMessage.textContent = "Valid code! Full access unlocked.";
             unlockMessage.style.color = "#4ECDC4";
             
-            // Simulazione di reindirizzamento alla versione completa
+            // Simulate redirection to the full version
             setTimeout(() => {
-                alert("In un'implementazione reale, saresti reindirizzato alla versione completa di Aqua Advisor. Questa è solo una demo.");
+                alert("In a real implementation, you would be redirected to the full version of Aqua Advisor. This is just a demo.");
             }, 1000);
         } else {
-            unlockMessage.textContent = "Codice non valido. Verifica e riprova.";
+            unlockMessage.textContent = "Invalid code. Please check and try again.";
             unlockMessage.style.color = "#e25555";
         }
     }
